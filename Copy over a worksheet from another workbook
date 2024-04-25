@@ -1,0 +1,14 @@
+Sub CopyFile()
+
+Application.ScreenUpdating = False
+
+FilePath = Worksheets("Setup").Cells(2, 3).Value
+Filename = Worksheets("Setup").Cells(3, 3).Value
+
+Set wb = Workbooks.Open(FilePath & Filename)
+wb.Sheets("worksheet").Copy After:=ThisWorkbook.Sheets(1)
+wb.Close SaveChanges:=False
+
+Application.ScreenUpdating = True
+
+End Sub
