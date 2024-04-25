@@ -1,3 +1,5 @@
+-copy over a worksheet from another workbook 
+
 Sub CopyFile()
 
 Application.ScreenUpdating = False
