@@ -1,0 +1,39 @@
+- Create a two dimensional matrix for data matching
+- Value within the matrix can be retrive by Cells(row,col) 
+
+Function getRowIndex(CodeRange) As Dictionary
+    Dim RowList As New Dictionary, Cell As Range
+    Dim key As String
+    Dim item As String
+    For Each Cell In CodeRange
+        If Cell.Value <> "Index Code" And Cell.Value <> "" Then
+        key = Cell.Value
+        item = Cell.row
+        RowList.Add key, item
+        End If
+    Next Cell
+    Set getRowIndex = RowList
+    MsgBox ("Row List is Loaded")
+End Function
+
+Function getColumnIndex(CodeRange) As Dictionary
+    Dim ColumnList As New Dictionary, Cell As Range
+    Dim key As String
+    Dim item As String
+    For Each Cell In CodeRange
+        If Cell.Value <> "" Then
+        key = Cell.Value
+        item = Cell.Column
+        ColumnList.Add key, item
+        End If
+    Next Cell
+    Set getColumnIndex = ColumnList
+    MsgBox ("Column List is Loaded")
+End Function
+
+Set ColumnRange = Range("A1").Resize(ActiveSheet.UsedRange.Rows.Count, 1)
+Dim IndexRow As Dictionary
+Set IndexRow = getRowIndex(CodeRange)
+Set ColumnRange = Range("A1").Resize(1, ActiveSheet.UsedRange.Columns.Count)
+Dim IndexColumn As Dictionary
+Set IndexColumn = getColumnIndex(ColumnRange)
