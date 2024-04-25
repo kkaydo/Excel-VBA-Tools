@@ -1,0 +1,11 @@
+- test whether the string contains a particular pattern string
+
+Function containString(str, pattern) As Boolean
+    Dim pos As Integer
+    pos = InStr(1, str, pattern)
+    If pos <> 0 Then
+        containString = True
+    Else
+        containString = False
+    End If
+End Function
