@@ -1,0 +1,14 @@
+'Remove all rows which contain str (pattern)
+
+Function removeRows(i, col, str)
+Cells(i, col).Select
+Do While Not IsEmpty(Selection)
+    If Selection.Value <> str Then
+        Selection.EntireRow.Delete
+        'Debug.Print Selection.Value
+    Else
+        i = i + 1
+        Cells(i, col).Select
+    End If
+Loop
+End Function
