@@ -1,0 +1,30 @@
+- create a dictionary: old code as key, new code as item
+Function getCode(col) As Dictionary
+    Dim CodeList As New Dictionary, Cell As Range
+    Dim key As String
+    Dim item As String
+    For Each Cell In Sheets("ItemCodesUpdate").Columns(col).Cells
+        If Cell.Value = "" Then
+            Exit For
+        End If
+        key = Cell.Value
+        item = Cell.Offset(0, 1).Value
+        CodeList.Add key, item
+    Next
+    Set getCode = CodeList
+    MsgBox ("Code List is Loaded")
+End Function
+
+Sub updateProductCode()
+Dim CodeDict As Dictionary
+Set CodeDict = getCode(1)
+
+Worksheets("ListMaster").Select
+Set CodeRange = Range("C5").Resize(ActiveSheet.UsedRange.Rows.Count, 1)
+For Each Cell In CodeRange
+    If CodeDict.Exists(Cell.Value) Then
+        Cell.Value = CodeDict.item(Cell.Value)
+    End If
+Next Cell
+MsgBox "Code Update complete"
+End sub
